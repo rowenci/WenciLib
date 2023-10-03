@@ -1,9 +1,9 @@
-﻿#include "RDate.h"
+﻿#include "WDate.h"
 
 #include <string>
 
 //获取某月天数
-int RDate::getMonthDay(int Year, int Month)
+int WDate::getMonthDay(int Year, int Month)
 {
 	static int monthDayArray[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	if (Month == 2 && isLeapYear(Year))
@@ -11,7 +11,7 @@ int RDate::getMonthDay(int Year, int Month)
 	return monthDayArray[Month];
 }
 
-bool RDate::before(const RDate& rDate)
+bool WDate::before(const WDate& rDate)
 {
 	if (year < rDate.year ||
 		year == rDate.year && month < rDate.month ||
@@ -20,47 +20,47 @@ bool RDate::before(const RDate& rDate)
 	return false;
 }
 
-bool RDate::after(const RDate& rDate)
+bool WDate::after(const WDate& rDate)
 {
 	return !before(rDate) && !equal(rDate);
 }
 
-bool RDate::equal(const RDate& rDate)
+bool WDate::equal(const WDate& rDate)
 {
 	return year == rDate.year &&
 		month == rDate.month &&
 		day == rDate.day;
 }
 
-void RDate::setYear(int Year)
+void WDate::setYear(int Year)
 {
 	if (Year < 0)
 		return;
 	this->year = Year;
 }
 
-void RDate::setMonth(int Month)
+void WDate::setMonth(int Month)
 {
 	if (Month < 1 || Month > 12)
 		return;
 	this->month = Month;
 }
 
-void RDate::setDay(int Day)
+void WDate::setDay(int Day)
 {
 	if (Day < 0 || Day > getMonthDay(this->year, this->month))
 		return;
 	this->day = Day;
 }
 
-void RDate::yearAdd(int count)
+void WDate::yearAdd(int count)
 {
 	if (count < 0)
 		return;
 	this->year += count;
 }
 
-void RDate::dayAdd(int count)
+void WDate::dayAdd(int count)
 {
 	if (count < 0)
 		return;
@@ -77,14 +77,14 @@ void RDate::dayAdd(int count)
 	}
 }
 
-void RDate::resetDate()
+void WDate::resetDate()
 {
 	this->year = 0;
 	this->month = 1;
 	this->day = 1;
 }
 
-std::string RDate::toString()
+std::string WDate::toString()
 {
 	std::string dateStr;
 	if (this->year < 10)
@@ -106,7 +106,7 @@ std::string RDate::toString()
 }
 
 //构造函数
-RDate::RDate(int Year, int Month, int Day)
+WDate::WDate(int Year, int Month, int Day)
 {
 	if (Year >= 1 && Month <= 12 && Month >= 1 && Day <= getMonthDay(Year, Month))
 	{
@@ -119,7 +119,7 @@ RDate::RDate(int Year, int Month, int Day)
 }
 
 // <运算符重载
-bool RDate::operator<(const RDate& rDate) const //类外访问成员函数需要设定类域
+bool WDate::operator<(const WDate& rDate) const //类外访问成员函数需要设定类域
 {
 	if (year < rDate.year ||
 		year == rDate.year && month < rDate.month ||
@@ -129,7 +129,7 @@ bool RDate::operator<(const RDate& rDate) const //类外访问成员函数需要
 }
 
 // ==运算符重载
-bool RDate::operator==(const RDate& rDate) const
+bool WDate::operator==(const WDate& rDate) const
 {
 	return year == rDate.year &&
 		month == rDate.month &&
@@ -137,16 +137,16 @@ bool RDate::operator==(const RDate& rDate) const
 }
 
 //日期 + 天数   d1 + 100  -->  d1.operator+(day)
-RDate RDate::operator+(int Day) const
+WDate WDate::operator+(int Day) const
 {
 	//法二：复用日期 += 天数
-	RDate ret(*this);
+	WDate ret(*this);
 	ret += Day;
 	return ret;
 }
 
 //日期 += 天数
-RDate& RDate::operator+=(int Day)
+WDate& WDate::operator+=(int Day)
 {
 	//法一：
 	//如果day小于0，要单独处理
@@ -169,7 +169,7 @@ RDate& RDate::operator+=(int Day)
 }
 
 //日期 -=天数  d1-=100
-RDate& RDate::operator-=(int Day)
+WDate& WDate::operator-=(int Day)
 {
 	//如果减去的天数是负数，要单独处理，直接调用+=
 	if (Day < 0)
@@ -191,49 +191,49 @@ RDate& RDate::operator-=(int Day)
 }
 
 //日期 - 天数
-RDate RDate::operator-(int Day) const
+WDate WDate::operator-(int Day) const
 {
-	RDate ret(*this);
+	WDate ret(*this);
 	ret -= Day;
 	return ret;
 }
 
 //前置++
-RDate& RDate::operator++() //无参的为前置
+WDate& WDate::operator++() //无参的为前置
 {
 	*this += 1; //直接复用+=
 	return *this;
 }
 
 //后置++
-RDate RDate::operator++(int i) //有参数的为后置
+WDate WDate::operator++(int i) //有参数的为后置
 {
-	RDate tmp(*this);
+	WDate tmp(*this);
 	*this += 1;
 	return tmp;
 }
 
 //前置--
-RDate& RDate::operator--() //无参的为前置
+WDate& WDate::operator--() //无参的为前置
 {
 	*this -= 1; //直接复用+=
 	return *this;
 }
 
 //后置--
-RDate RDate::operator--(int i) //有参数的为后置
+WDate WDate::operator--(int i) //有参数的为后置
 {
-	RDate tmp(*this);
+	WDate tmp(*this);
 	*this -= 1;
 	return tmp;
 }
 
 //日期 - 日期
-int RDate::operator-(const RDate& d) const
+int WDate::operator-(const WDate& d) const
 {
 	int flag = 1;
-	RDate max = *this;
-	RDate min = d;
+	WDate max = *this;
+	WDate min = d;
 	if (*this < d)
 	{
 		min = *this;
@@ -249,7 +249,7 @@ int RDate::operator-(const RDate& d) const
 	return n * flag; //如果d1大，结果为正，d2大结果为负
 }
 
-std::ostream& operator<<(std::ostream& output, const RDate& rDate)
+std::ostream& operator<<(std::ostream& output, const WDate& rDate)
 {
 	if (rDate.year < 10)
 		output << "000";

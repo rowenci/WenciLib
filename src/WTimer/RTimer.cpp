@@ -1,6 +1,6 @@
-﻿#include "RTimer.h"
+﻿#include "WTimer.h"
 
-void RTimer::secondAdd(int count)
+void WTimer::secondAdd(int count)
 {
 	if (count < 0)
 		return;
@@ -8,7 +8,7 @@ void RTimer::secondAdd(int count)
 	rDate += dayCount;
 }
 
-void RTimer::minuteAdd(int count)
+void WTimer::minuteAdd(int count)
 {
 	if (count < 0)
 		return;
@@ -17,7 +17,7 @@ void RTimer::minuteAdd(int count)
 	rDate += dayCount;
 }
 
-void RTimer::hourAdd(int count)
+void WTimer::hourAdd(int count)
 {
 	if (count < 0)
 		return;
@@ -25,35 +25,35 @@ void RTimer::hourAdd(int count)
 	rDate += dayCount;
 }
 
-void RTimer::dayAdd(int count)
+void WTimer::dayAdd(int count)
 {
 	if (count < 0)
 		return;
 	++this->rDate;
 }
 
-void RTimer::secondSub(int count)
+void WTimer::secondSub(int count)
 {
 	this->rClock.secondSub(count);
 }
 
-void RTimer::minuteSub(int count)
+void WTimer::minuteSub(int count)
 {
 	this->rClock.minuteSub(count);
 }
 
-void RTimer::hourSub(int count)
+void WTimer::hourSub(int count)
 {
 	this->rClock.hourSub(count);
 }
 
-void RTimer::daySub(int count)
+void WTimer::daySub(int count)
 {
 	--this->rDate;
 }
 
 // rtimer 代表时间在后
-bool RTimer::before(const RTimer& rTimer)
+bool WTimer::before(const WTimer& rTimer)
 {
 	if (rDate.before(rTimer.rDate))
 		return true;
@@ -63,7 +63,7 @@ bool RTimer::before(const RTimer& rTimer)
 }
 
 // rtimer 代表时间在前
-bool RTimer::after(const RTimer& rTimer)
+bool WTimer::after(const WTimer& rTimer)
 {
 	if (rDate.after(rTimer.rDate))
 		return true;
@@ -72,42 +72,42 @@ bool RTimer::after(const RTimer& rTimer)
 	return false;
 }
 
-bool RTimer::equal(const RTimer& rTimer)
+bool WTimer::equal(const WTimer& rTimer)
 {
 	return rDate.equal(rTimer.rDate) && rClock.equal(rTimer.rClock);
 }
 
-void RTimer::setSecond(int second)
+void WTimer::setSecond(int second)
 {
 	this->rClock.setSecond(second);
 }
 
-void RTimer::setMinute(int minute)
+void WTimer::setMinute(int minute)
 {
 	this->rClock.setMinute(minute);
 }
 
-void RTimer::setHour(int hour)
+void WTimer::setHour(int hour)
 {
 	this->rClock.setHour(hour);
 }
 
-void RTimer::setDay(int day)
+void WTimer::setDay(int day)
 {
 	this->rDate.setDay(day);
 }
 
-void RTimer::setMonth(int month)
+void WTimer::setMonth(int month)
 {
 	this->rDate.setMonth(month);
 }
 
-void RTimer::setYear(int year)
+void WTimer::setYear(int year)
 {
 	this->rDate.setYear(year);
 }
 
-void RTimer::resetCalender(int year, int month, int day, int hour, int minute, int second)
+void WTimer::resetCalender(int year, int month, int day, int hour, int minute, int second)
 {
 	this->rClock.setHour(hour);
 	this->rClock.setMinute(minute);
@@ -118,43 +118,43 @@ void RTimer::resetCalender(int year, int month, int day, int hour, int minute, i
 	this->rDate.setDay(day);
 }
 
-int RTimer::getSecond()
+int WTimer::getSecond()
 {
 	return rClock.getSecond();
 }
 
-int RTimer::getMinute()
+int WTimer::getMinute()
 {
 	return rClock.getMinute();
 }
 
-int RTimer::getHour()
+int WTimer::getHour()
 {
 	return rClock.getHour();
 }
 
-int RTimer::getDay()
+int WTimer::getDay()
 {
 	return rDate.day;
 }
 
-int RTimer::getMonth()
+int WTimer::getMonth()
 {
 	return rDate.month;
 }
 
-int RTimer::getYear()
+int WTimer::getYear()
 {
 	return rDate.year;
 }
 
-void RTimer::resetTimer()
+void WTimer::resetTimer()
 {
 	this->rDate.resetDate();
 	this->rClock.resetClock();
 }
 
-std::string RTimer::toString()
+std::string WTimer::toString()
 {
 	std::string timerStr;
 	timerStr.append(this->rDate.toString());
@@ -163,7 +163,7 @@ std::string RTimer::toString()
 	return timerStr;
 }
 
-std::ostream& operator<<(std::ostream& output, const RTimer& rTimer)
+std::ostream& operator<<(std::ostream& output, const WTimer& rTimer)
 {
 	output << rTimer.rDate;
 	output << " ";

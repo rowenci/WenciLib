@@ -10,7 +10,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(lib_name WenciLib)
 
 add_subdirectory(ThirdParty)
-add_subdirectory(./src/Timer)
+add_subdirectory(src/WTimer)
 
 aux_source_directory(./src wenci_src)
 file(GLOB_RECURSE wenci_include ./include/*.h)
