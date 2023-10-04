@@ -9,13 +9,13 @@ public:
 	}
 	
 	WTimer(int Year, int Month, int Day, int Hour, int Minute, int Second) {
-		this->rDate.setYear(Year);
-		this->rDate.setMonth(Month);
-		this->rDate.setDay(Day);
+		this->wDate.setYear(Year);
+		this->wDate.setMonth(Month);
+		this->wDate.setDay(Day);
 		
-		this->rClock.setHour(Hour);
-		this->rClock.setMinute(Minute);
-		this->rClock.setSecond(Second);
+		this->wClock.setHour(Hour);
+		this->wClock.setMinute(Minute);
+		this->wClock.setSecond(Second);
 	}
 	
 	WTimer(std::string fromTimeString, bool shortType) {
@@ -28,23 +28,23 @@ public:
 			int Minute = std::stoi(fromTimeString.substr(14, 2));
 			int Second = std::stoi(fromTimeString.substr(17, 2));
 			
-			this->rDate.setYear(Year);
-			this->rDate.setMonth(Month);
-			this->rDate.setDay(Day);
+			this->wDate.setYear(Year);
+			this->wDate.setMonth(Month);
+			this->wDate.setDay(Day);
 			
-			this->rClock.setHour(Hour);
-			this->rClock.setMinute(Minute);
-			this->rClock.setSecond(Second);
+			this->wClock.setHour(Hour);
+			this->wClock.setMinute(Minute);
+			this->wClock.setSecond(Second);
 		} else {
 			int Hour = std::stoi(fromTimeString.substr(0, 2));
 			int Minute = std::stoi(fromTimeString.substr(3, 2));
-			this->rDate.setYear(0);
-			this->rDate.setMonth(1);
-			this->rDate.setDay(1);
+			this->wDate.setYear(0);
+			this->wDate.setMonth(1);
+			this->wDate.setDay(1);
 			
-			this->rClock.setHour(Hour);
-			this->rClock.setMinute(Minute);
-			this->rClock.setSecond(0);
+			this->wClock.setHour(Hour);
+			this->wClock.setMinute(Minute);
+			this->wClock.setSecond(0);
 		}
 	}
 	
@@ -61,9 +61,9 @@ public:
 	void hourSub(int count);
 	void daySub(int count);
 	
-	bool before(const WTimer& rTimer);
-	bool after(const WTimer& rTimer);
-	bool equal(const WTimer& rTimer);
+	bool before(const WTimer& wTimer);
+	bool after(const WTimer& wTimer);
+	bool equal(const WTimer& wTimer);
 	
 	void setSecond(int second);
 	void setMinute(int minute);
@@ -84,23 +84,23 @@ public:
 	
 	std::string toString();
 	
-	friend std::ostream& operator<<(std::ostream& output, const WTimer& rTimer);
+	friend std::ostream& operator<<(std::ostream& output, const WTimer& wTimer);
 	
 	std::string toTimeString() {
 		std::string str;
 		std::string hour;
-		if (rClock.getHour() < 10) {
+		if (wClock.getHour() < 10) {
 			str.append("0");
 		}
-		str.append(std::to_string(rClock.getHour()));
-		if (rClock.getMinute() < 10) {
+		str.append(std::to_string(wClock.getHour()));
+		if (wClock.getMinute() < 10) {
 			str.append("0");
 		}
-		str.append(std::to_string(rClock.getMinute()));
+		str.append(std::to_string(wClock.getMinute()));
 		return str;
 	}
 
 private:
-	WClock rClock;
-	WDate rDate;
+	WClock wClock;
+	WDate wDate;
 };

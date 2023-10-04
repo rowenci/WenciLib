@@ -11,25 +11,25 @@ int WDate::getMonthDay(int Year, int Month)
 	return monthDayArray[Month];
 }
 
-bool WDate::before(const WDate& rDate)
+bool WDate::before(const WDate& wDate)
 {
-	if (year < rDate.year ||
-		year == rDate.year && month < rDate.month ||
-		year == rDate.year && month == rDate.month && day < rDate.day)
+	if (year < wDate.year ||
+		year == wDate.year && month < wDate.month ||
+		year == wDate.year && month == wDate.month && day < wDate.day)
 		return true;
 	return false;
 }
 
-bool WDate::after(const WDate& rDate)
+bool WDate::after(const WDate& wDate)
 {
-	return !before(rDate) && !equal(rDate);
+	return !before(wDate) && !equal(wDate);
 }
 
-bool WDate::equal(const WDate& rDate)
+bool WDate::equal(const WDate& wDate)
 {
-	return year == rDate.year &&
-		month == rDate.month &&
-		day == rDate.day;
+	return year == wDate.year &&
+		month == wDate.month &&
+		day == wDate.day;
 }
 
 void WDate::setYear(int Year)
@@ -119,21 +119,21 @@ WDate::WDate(int Year, int Month, int Day)
 }
 
 // <运算符重载
-bool WDate::operator<(const WDate& rDate) const //类外访问成员函数需要设定类域
+bool WDate::operator<(const WDate& wDate) const //类外访问成员函数需要设定类域
 {
-	if (year < rDate.year ||
-		year == rDate.year && month < rDate.month ||
-		year == rDate.year && month == rDate.month && day < rDate.day)
+	if (year < wDate.year ||
+		year == wDate.year && month < wDate.month ||
+		year == wDate.year && month == wDate.month && day < wDate.day)
 		return true;
 	return false;
 }
 
 // ==运算符重载
-bool WDate::operator==(const WDate& rDate) const
+bool WDate::operator==(const WDate& wDate) const
 {
-	return year == rDate.year &&
-		month == rDate.month &&
-		day == rDate.day;
+	return year == wDate.year &&
+		month == wDate.month &&
+		day == wDate.day;
 }
 
 //日期 + 天数   d1 + 100  -->  d1.operator+(day)
@@ -249,20 +249,29 @@ int WDate::operator-(const WDate& d) const
 	return n * flag; //如果d1大，结果为正，d2大结果为负
 }
 
-std::ostream& operator<<(std::ostream& output, const WDate& rDate)
+std::ostream& operator<<(std::ostream& output, const WDate& wDate)
 {
-	if (rDate.year < 10)
+	if (wDate.year < 10)
 		output << "000";
-	if (rDate.year < 100)
+	if (wDate.year < 100)
 		output << "00";
-	if (rDate.year < 1000)
+	if (wDate.year < 1000)
 		output << "0";
-	output << rDate.year << "-";
-	if (rDate.month < 10)
+	output << wDate.year << "-";
+	if (wDate.month < 10)
 		output << "0";
-	output << rDate.month << "-";
-	if (rDate.month < 10)
+	output << wDate.month << "-";
+	if (wDate.month < 10)
 		output << "0";
-	output << rDate.day;
+	output << wDate.day;
 	return output;
+}
+int WDate::getYear() const {
+	return this->year;
+}
+int WDate::getMonth() const {
+	return this->month;
+}
+int WDate::getDay() const {
+	return this->day;
 }

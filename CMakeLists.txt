@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.26)
+cmake_minimum_required(VERSION 3.23)
 project(
         WenciLib
         LANGUAGES CXX
@@ -17,4 +17,5 @@ file(GLOB_RECURSE wenci_include ./include/*.h)
 add_executable(${lib_name} ./src/main.cpp)
 target_include_directories(${lib_name} PUBLIC include)
 target_link_libraries(${lib_name} PUBLIC spdlog)
+target_link_libraries(${lib_name} PUBLIC WTimer)
 target_precompile_headers(${lib_name} PUBLIC ./include/PCH.h)

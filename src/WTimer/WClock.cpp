@@ -107,36 +107,36 @@ int WClock::getHour() const
 	return this->hour;
 }
 
-bool WClock::before(const WClock& rClock) const
+bool WClock::before(const WClock& wClock) const
 {
 	// compare hour
-	if (this->hour < rClock.hour)
+	if (this->hour < wClock.hour)
 		return true;
-	if (this->hour > rClock.hour)
+	if (this->hour > wClock.hour)
 		return false;
 
 	// compare minute
-	if (this->minute < rClock.minute)
+	if (this->minute < wClock.minute)
 		return true;
-	if (this->minute > rClock.minute)
+	if (this->minute > wClock.minute)
 		return false;
 
 	// compare second
-	if (this->second < rClock.second)
+	if (this->second < wClock.second)
 		return true;
-	if (this->second > rClock.second)
+	if (this->second > wClock.second)
 		return false;
 	return false;
 }
 
-bool WClock::after(const WClock& rClock) const
+bool WClock::after(const WClock& wClock) const
 {
-	return !before(rClock) && !equal(rClock);
+	return !before(wClock) && !equal(wClock);
 }
 
-bool WClock::equal(const WClock& rClock) const
+bool WClock::equal(const WClock& wClock) const
 {
-	return this->hour == rClock.hour && this->minute == rClock.minute && this->second == rClock.second;
+	return this->hour == wClock.hour && this->minute == wClock.minute && this->second == wClock.second;
 }
 
 std::string WClock::toString() const
@@ -190,44 +190,44 @@ void WClock::setSecond(int Second)
 	this->second = Second;
 }
 
-bool WClock::operator<(const WClock& rClock) const
+bool WClock::operator<(const WClock& wClock) const
 {
-	return before(rClock);
+	return before(wClock);
 }
 
-bool WClock::operator>(const WClock& rClock) const
+bool WClock::operator>(const WClock& wClock) const
 {
-	return after(rClock);
+	return after(wClock);
 }
 
-bool WClock::operator==(const WClock& rClock) const
+bool WClock::operator==(const WClock& wClock) const
 {
-	return equal(rClock);
+	return equal(wClock);
 }
 
-bool WClock::operator!=(const WClock& rClock) const
+bool WClock::operator!=(const WClock& wClock) const
 {
-	return !equal(rClock);
+	return !equal(wClock);
 }
 
-std::ostream& operator<<(std::ostream& output, const WClock& rClock)
+std::ostream& operator<<(std::ostream& output, const WClock& wClock)
 {
-	if (rClock.hour < 10)
+	/*if (wClock.hour < 10)
 		output << "0";
-	output << rClock.hour << ":";
-	if (rClock.minute < 10)
+	output << wClock.hour << ":";
+	if (wClock.minute < 10)
 		output << "0";
-	output << rClock.minute << ":";
-	if (rClock.second < 10)
+	output << wClock.minute << ":";
+	if (wClock.second < 10)
 		output << "0";
-	output << rClock.second;
+	output << wClock.second;*/
 	return output;
 }
 
-WClock& WClock::operator=(const WClock& rClock)
+WClock& WClock::operator=(const WClock& wClock)
 {
-	this->hour = rClock.hour;
-	this->minute = rClock.minute;
-	this->second = rClock.second;
+	this->hour = wClock.hour;
+	this->minute = wClock.minute;
+	this->second = wClock.second;
 	return *this;
 }

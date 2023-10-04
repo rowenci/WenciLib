@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 class WClock {
 public:
 	WClock() = default;
@@ -23,20 +25,20 @@ public:
 	int minuteSub(int count);
 	int hourSub(int count);
 	
-	bool before(const WClock& rClock) const;
-	bool after(const WClock& rClock) const;
-	bool equal(const WClock& rClock) const;
+	bool before(const WClock& wClock) const;
+	bool after(const WClock& wClock) const;
+	bool equal(const WClock& wClock) const;
 	
 	std::string toString() const;
 	
 	void resetClock();
 	
-	bool operator<(const WClock& rClock) const;
-	bool operator>(const WClock& rClock) const;
-	bool operator==(const WClock& rClock) const;
-	bool operator!=(const WClock& rClock) const;
-	friend std::ostream& operator<<(std::ostream& output, const WClock& rClock);
-	WClock& operator=(const WClock& rClock);
+	bool operator<(const WClock& wClock) const;
+	bool operator>(const WClock& wClock) const;
+	bool operator==(const WClock& wClock) const;
+	bool operator!=(const WClock& wClock) const;
+	friend std::ostream& operator<<(std::ostream& output, const WClock& wClock);
+	WClock& operator=(const WClock& wClock);
 
 private:
 	int hour = 0; // 时 0 ~ 23
